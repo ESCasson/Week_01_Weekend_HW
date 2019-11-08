@@ -1,4 +1,21 @@
 ###### DATA FOR DEBUGGING #######
+customers = [
+  {
+    name: "Alice",
+    pets: [],
+    cash: 1000
+  },
+  {
+    name: "Bob",
+    pets: [],
+    cash: 50
+  },
+  {
+    name: "Jack",
+    pets: [],
+    cash: 100
+  }
+]
 
 pet_shop = {
   pets: [
@@ -128,6 +145,21 @@ def customer_can_afford_pet(customer_index, new_pet)
   end
   return false
 end
+
+def sell_pet_to_customer(pet_shop, new_pet, customer_index)
+  if new_pet != nil
+    customer_index[:pets].push(new_pet)
+
+    number_sold = 1
+    increase_pets_sold(pet_shop,number_sold)
+
+    pet_cost = new_pet[:price]
+    customer_index[:cash] -= pet_cost
+    pet_shop[:admin][:total_cash] += pet_cost
+  else
+  end
+end
+
 
 
 
