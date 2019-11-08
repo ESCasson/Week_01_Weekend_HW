@@ -1,3 +1,5 @@
+###### DATA FOR DEBUGGING #######
+
 pet_shop = {
   pets: [
     {
@@ -44,9 +46,7 @@ pet_shop = {
   name: "Camelot of Pets"
 }
 
-
-
-
+####### END OF DATA FOR DEBUGGING ########
 
 
 def pet_shop_name(pet_shop)
@@ -81,4 +81,38 @@ def pets_by_breed(pet_shop, breed)
     end
   end
   return pets
+end
+
+def find_pet_by_name(pet_shop, pet_name)
+  for pet in pet_shop[:pets]
+    if pet[:name] == pet_name
+    return pet
+    end
+  end
+  nil
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def thing
 end
