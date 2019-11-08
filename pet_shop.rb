@@ -104,6 +104,35 @@ def add_pet_to_stock(pet_shop, new_pet)
 pet_shop[:pets].push(new_pet)
 end
 
+def customer_cash(customers_index)
+  return customers_index[:cash]
+end
+
+def remove_customer_cash(customers_index, amount_to_remove)
+  customers_index[:cash] -= amount_to_remove
+end
+
+def customer_pet_count(customers_index)
+customers_index[:pets].count()
+end
+
+def add_pet_to_customer(customer_index, new_pet)
+customer_index[:pets].push(new_pet)
+end
+
+###### OPTIONAL ######
+
+def customer_can_afford_pet(customer_index, new_pet)
+  if customer_index[:cash] >= new_pet[:price]
+    return true
+  end
+  return false
+end
+
+
+
+
+
 
 
 
