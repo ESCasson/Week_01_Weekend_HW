@@ -1,4 +1,3 @@
-###### DATA FOR DEBUGGING #######
 customers = [
   {
     name: "Alice",
@@ -16,6 +15,13 @@ customers = [
     cash: 100
   }
 ]
+
+new_pet = {
+  name: "Bors the Younger",
+  pet_type: :cat,
+  breed: "Cornish Rex",
+  price: 100
+}
 
 pet_shop = {
   pets: [
@@ -62,8 +68,6 @@ pet_shop = {
   },
   name: "Camelot of Pets"
 }
-
-####### END OF DATA FOR DEBUGGING ########
 
 
 def pet_shop_name(pet_shop)
@@ -121,16 +125,16 @@ def add_pet_to_stock(pet_shop, new_pet)
 pet_shop[:pets].push(new_pet)
 end
 
-def customer_cash(customers_index)
-  return customers_index[:cash]
+def customer_cash(customer_index)
+  return customer_index[:cash]
 end
 
-def remove_customer_cash(customers_index, amount_to_remove)
-  customers_index[:cash] -= amount_to_remove
+def remove_customer_cash(customer_index, amount_to_remove)
+  customer_index[:cash] -= amount_to_remove
 end
 
-def customer_pet_count(customers_index)
-customers_index[:pets].count()
+def customer_pet_count(customer_index)
+customer_index[:pets].count()
 end
 
 def add_pet_to_customer(customer_index, new_pet)
@@ -147,43 +151,36 @@ def customer_can_afford_pet(customer_index, new_pet)
 end
 
 def sell_pet_to_customer(pet_shop, new_pet, customer_index)
-  if new_pet != nil
+  if new_pet != nil && customer_can_afford_pet(customer_index, new_pet) == true
+
     customer_index[:pets].push(new_pet)
 
     number_sold = 1
     increase_pets_sold(pet_shop,number_sold)
 
     pet_cost = new_pet[:price]
-    customer_index[:cash] -= pet_cost
-    pet_shop[:admin][:total_cash] += pet_cost
+    remove_customer_cash(customer_index, pet_cost)
+    add_or_remove_cash(pet_shop, pet_cost)
   else
   end
 end
+### additonal addional ###
+# as the pet has been sold it should be removed from the stock
+def sell_pet_to_customer_and_remove(pet_shop, new_pet, customer_index)
+  if new_pet != nil && customer_can_afford_pet(customer_index, new_pet) == true
 
+    customer_index[:pets].push(new_pet)
 
+    number_sold = 1
+    increase_pets_sold(pet_shop,number_sold)
 
+    pet_cost = new_pet[:price]
+    remove_customer_cash(customer_index, pet_cost)
+    add_or_remove_cash(pet_shop, pet_cost)
 
+    pet_name = new_pet[:name]
+    remove_pet_by_name(pet_shop, pet_name)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def thing
+  else
+  end
 end
